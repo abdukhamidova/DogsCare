@@ -13,3 +13,11 @@
 .externalNativeBuild
 .cxx
 local.properties
+# Ignorowanie pliku z kluczami API
+app/google-services.json
+
+# Ignorowanie pliku zawierającego hasła
+app/src/main/res/values/secrets.xml
+
+# Ignorowanie katalogu .idea (konfiguracja Android Studio)
+.idea/
