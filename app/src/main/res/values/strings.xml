@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DogsCare</string>
+    <string name="dogs">Psy</string>
+    <string name="calendar">Kalendarz</string>
+    <string name="archive">Archiwum</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

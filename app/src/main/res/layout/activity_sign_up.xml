@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.dogscare.SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32">
+
+        <TextView
+            android:id="@+id/textLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rejestracja"
+            android:textSize="@dimen/_30ssp"
+            android:gravity="center"/> <!--Login-->
+
+        <EditText
+            android:id="@+id/textEmailSignUp"
+            android:layout_width="@dimen/_232sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="@dimen/_46sdp"
+            android:hint="E-mail"
+            android:textSize="@dimen/_14sdp"
+            android:autofillHints="emailAddress"
+            android:drawablePadding="@dimen/_4sdp"
+            android:ems="10"
+            android:inputType="textEmailAddress" /> <!--e-mail-->
+
+        <EditText
+            android:id="@+id/textPasswordSignUp"
+            android:layout_width="@dimen/_232sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:textSize="@dimen/_14sdp"
+            android:hint="Hasło"
+            android:drawablePadding="@dimen/_4sdp"
+            android:ems="10"
+            android:inputType="textPassword" /> <!--password-->
+        <EditText
+            android:id="@+id/textRepeatPasswordSignUp"
+            android:layout_width="@dimen/_232sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:textSize="@dimen/_14sdp"
+            android:hint="Powtórz hasło"
+            android:drawablePadding="@dimen/_4sdp"
+            android:ems="10"
+            android:inputType="textPassword" /> <!--password-->
+
+        <Button
+            android:id="@+id/buttonSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Załóż konto"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp" /> <!--log in-->
+
+        <TextView
+            android:id="@+id/textSignedUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:text="Mam już konto."
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintVertical_bias="0" /> <!--sign up-->
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
