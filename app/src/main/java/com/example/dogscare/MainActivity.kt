@@ -4,12 +4,15 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.dogscare.databinding.ActivityMainBinding
+import com.example.dogscare.databinding.ToolbarBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -17,6 +20,7 @@ import com.google.firebase.firestore.firestore
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var header: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         }
         firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser?.email.toString()
+
+        //region TOOLBAR
+        header = findViewById(R.id.toolbarHeader)
+        //endregion
 
         replaceFragment(DogListFragment())
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -50,4 +58,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
+    fun setToolbarTitle(title: String){
+        header.text = title
+    }
 }

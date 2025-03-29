@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dogscare.databinding.FragmentDogListBinding
-import java.text.Normalizer.Form
 
 class DogListFragment : Fragment() {
     private lateinit var binding: FragmentDogListBinding
@@ -16,7 +15,7 @@ class DogListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDogListBinding.inflate(inflater, container, false)
-
+        (activity as? MainActivity)?.setToolbarTitle("Lista psów")
 
         binding.floatingButtonAdd.setOnClickListener{
             val intent = Intent(requireContext(), FormDogActivity::class.java)
