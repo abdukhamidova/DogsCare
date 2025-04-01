@@ -26,10 +26,10 @@ class FormDogActivity :AppCompatActivity() {
         header = findViewById(R.id.toolbarHeader)
         //endregion
 
-        replaceFragment(FormMainFragment())
+        replaceFragment(FormInfoFragment())
         binding.bottomNavigationViewForm.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.formDog -> replaceFragment(FormMainFragment())
+                R.id.formDog -> replaceFragment(FormInfoFragment())
                 R.id.medicalBook -> replaceFragment(FormMedicalFragment())
 
                 else -> {}

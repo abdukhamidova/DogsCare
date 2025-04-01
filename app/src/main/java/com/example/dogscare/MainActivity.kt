@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.listOfDogs -> replaceFragment(DogListFragment())
-                //R.id.mainCalendar -> replaceFragment(CalendarFragment())
+                R.id.mainCalendar -> replaceFragment(CalendarMainFragment())
                 R.id.dogsArchive -> replaceFragment(ArchiveFragment())
 
                 else -> {}

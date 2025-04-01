@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.play.services.cast.framework)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -55,4 +57,8 @@ dependencies {
     //sdp i ssp
     implementation("com.intuit.sdp:sdp-android:1.0.6")
     implementation("com.intuit.ssp:ssp-android:1.0.6")
+
+    //kalendarz
+    implementation ("com.applandeo:material-calendar-view:1.9.2")
+    //implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 }

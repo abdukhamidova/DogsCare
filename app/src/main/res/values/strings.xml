@@ -10,4 +10,5 @@
     <string name="imie">Imię</string>
     <string name="rasa">Rasa</string>
     <string name="zapisz">Zapisz</string>
+    <string name="data_przyjecia">data przyjęcia</string>
 </resources>
