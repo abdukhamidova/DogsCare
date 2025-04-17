@@ -34,6 +34,7 @@ class FormConfirmDeathFragment : Fragment() {
         binding = FragmentConfirmDeathBinding.inflate(inflater, container, false)
         val fireId = arguments?.getString("fireId")
         val buttonSave = requireActivity().findViewById<ImageButton>(R.id.imageButtonSave)
+        buttonSave.visibility = View.VISIBLE
 
         if(fireId != null){
             fetchName(fireId) { name ->
@@ -47,8 +48,7 @@ class FormConfirmDeathFragment : Fragment() {
                     saveArchiveData(fireId)
                 }
             }
-            if(activity is ActivityDogDetails) {
-                (activity as? ActivityDogDetails)?.setToolbarTitle("Dokumentacja zgonu")
+            else if(activity is ActivityArchiveDetails) {
                 fetchArchiveData(fireId)
 
                 buttonSave.setOnClickListener{
@@ -108,7 +108,7 @@ class FormConfirmDeathFragment : Fragment() {
         }
         val userId = user.uid
 
-        val deathDate = binding.editTextDeathTime.text.toString().trim()
+        val deathDate = binding.editTextDeathDate.text.toString().trim()
         val deathTime = binding.editTextDeathTime.text.toString().trim()
         val place = binding.editTextPlace.text.toString().trim()
         val cause = binding.editTextCause.text.toString().trim()
@@ -225,7 +225,7 @@ class FormConfirmDeathFragment : Fragment() {
         if (updatedFields.isNotEmpty()) {
             dogRef.update(updatedFields)
                 .addOnSuccessListener {
-                    confirmDeath(fireId, userId)
+                    Toast.makeText(requireContext(), "Dane zostały zaktualizowane.", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(requireContext(), "Błąd zapisu: ${e.message}", Toast.LENGTH_LONG).show()
@@ -247,7 +247,7 @@ class FormConfirmDeathFragment : Fragment() {
             .collection("dogs").document(fireId)
             .get().addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    archiveMap = document.get("archive") as? Map<*, *> //zapamiętanie dla późniejszego porównania
+                    archiveMap = document.get("archiveData") as? Map<*, *> //zapamiętanie dla późniejszego porównania
 
                     if (archiveMap != null) {
                         binding.editTextCause.setText(archiveMap!!["cause"] as? String ?: "")

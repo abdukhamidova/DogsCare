@@ -45,7 +45,6 @@ class ListDogFragment : Fragment() {
         //dodaj psa
         binding.floatingButtonAdd.setOnClickListener{
             val intent = Intent(requireContext(), ActivityAdd::class.java)
-            intent.putExtra("openCommand", "AddDog")
             startActivity(intent)
         }
 
@@ -71,7 +70,6 @@ class ListDogFragment : Fragment() {
         adapter.setOnItemClickListener(object : DogAdapter.OnItemClickListener{
             override fun onItemClick(dog: Dog) {
                 val intent = Intent(requireContext(), ActivityDogDetails::class.java)
-                intent.putExtra("openCommand", "DogInfo")
                 intent.putExtra("fireId", dog.fireId)
                 startActivity(intent)
             }

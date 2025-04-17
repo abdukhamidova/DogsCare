@@ -43,26 +43,12 @@ class ActivityDogDetails :AppCompatActivity() {
         }
         //endregion
 
-        //region fragment replace openCommand
-        val openFragment = intent.getStringExtra("openCommand")
-
-        when(openFragment){
-            "DogInfo" -> {
-                val formInfoFragment = FormBasicFragment()
-                val bundle = Bundle()
-                bundle.putString("fireId", dogId)
-                formInfoFragment.arguments = bundle
-                replaceFragment(formInfoFragment)
-            }
-            "AdoptDog" -> {
-                val formAdoptFragment = FormAdoptFragment()
-                val bundle = Bundle()
-                bundle.putString("fireId", dogId)
-                formAdoptFragment.arguments = bundle
-                replaceFragment(formAdoptFragment)
-            }
-            else -> {}
-        }
+        //region deafult fragment
+        val formInfoFragment = FormBasicFragment()
+        val bundle = Bundle()
+        bundle.putString("fireId", dogId)
+        formInfoFragment.arguments = bundle
+        replaceFragment(formInfoFragment)
         //endregion
 
         //region fragment replace BOTTOM NAV

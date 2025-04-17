@@ -39,15 +39,21 @@ class FormBasicFragment : Fragment() {
         binding = FragmentFormBasicBinding.inflate(inflater, container, false)
         val buttonSave = requireActivity().findViewById<ImageButton>(R.id.imageButtonSave)
 
-        //fragment do podglądu/edycji psa
-        (activity as? ActivityDogDetails)?.setToolbarTitle("Informacje")
         val fireId = arguments?.getString("fireId")
 
         //uzupełnienie pól
         if (fireId != null) {
+            if(activity is ActivityDogDetails)
+                (activity as? ActivityDogDetails)?.setToolbarTitle("Informacje")
+
+            if(activity is ActivityArchiveDetails) {
+                buttonSave.visibility = View.GONE
+            }
+
             fetchDogFromDatabase(fireId)
             fillAgeField(fireId)
         }
+
 
         binding.editTextDateArrival.setOnClickListener{
             showDatePickerDialog()
@@ -75,7 +81,6 @@ class FormBasicFragment : Fragment() {
                 }
         }*/
         //endregion
-
 
         return binding.root
     }

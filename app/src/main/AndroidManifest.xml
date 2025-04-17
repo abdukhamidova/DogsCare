@@ -37,5 +37,9 @@
             android:name=".ActivityAdd"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".ActivityArchiveDetails"
+            android:exported="false">
+        </activity>
     </application>
 </manifest>

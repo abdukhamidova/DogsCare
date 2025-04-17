@@ -33,6 +33,7 @@ class FormAdoptFragment : Fragment() {
         binding = FragmentFormAdoptBinding.inflate(inflater, container, false)
         val fireId = arguments?.getString("fireId")
         val buttonSave = requireActivity().findViewById<ImageButton>(R.id.imageButtonSave)
+        buttonSave.visibility = View.VISIBLE
 
         if(fireId != null){
             fetchName(fireId) { name ->
@@ -46,8 +47,7 @@ class FormAdoptFragment : Fragment() {
                     saveNewAdoptionData(fireId)
                 }
 
-            }else if(activity is ActivityDogDetails) {
-                (activity as? ActivityDogDetails)?.setToolbarTitle("Adopcja")
+            }else if(activity is ActivityArchiveDetails) {
                 fetchAdoptionData(fireId)
 
                 buttonSave.setOnClickListener{
@@ -248,7 +248,7 @@ class FormAdoptFragment : Fragment() {
             .collection("dogs").document(fireId)
             .get().addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    archiveMap = document.get("archive") as? Map<*, *> //zapamiętanie dla późniejszego porównania
+                    archiveMap = document.get("archiveData") as? Map<*, *> //zapamiętanie dla późniejszego porównania
 
                     if (archiveMap != null) {
                         binding.editTextName.setText(archiveMap!!["name"] as? String ?: "")

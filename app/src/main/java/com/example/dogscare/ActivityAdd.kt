@@ -28,20 +28,6 @@ class ActivityAdd : AppCompatActivity() {
         //endregion
 
         val dogId = intent.getStringExtra("fireId")
-        //region Replace Fragment openCommand
-        val openFragment = intent.getStringExtra("openCommand")
-        when(openFragment){
-            "AddDog" -> replaceFragment(AddDogFragment())
-            /*"AdoptDog" -> {
-                val formAdoptFragment = FormAdoptFragment()
-                val bundle = Bundle()
-                bundle.putString("fireId", dogId)
-                formAdoptFragment.arguments = bundle
-                replaceFragment(formAdoptFragment)
-            }*/
-            else -> {}
-        }
-        //endregion
 
         //region Replace Fragment openArchive
         val archiveTypeString = intent.getStringExtra("archiveType")
@@ -74,7 +60,7 @@ class ActivityAdd : AppCompatActivity() {
                 FormOtherFragment.arguments = bundle
                 replaceFragment(FormOtherFragment)
             }
-            else -> {}
+            else -> replaceFragment(AddDogFragment())
         }
         //endregion
     }

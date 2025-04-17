@@ -26,7 +26,7 @@ class ListArchiveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentArchiveBinding.inflate(inflater, container, false)
-        (activity as? ActivityMain)?.setToolbarTitle("Adoptowane psy")
+        (activity as? ActivityMain)?.setToolbarTitle("Archiwum")
 
         binding.imageButtonFilter.setOnClickListener{
             FilterArchiveDialog(requireContext(), selectedArchiveType) { archiveType ->
@@ -74,7 +74,7 @@ class ListArchiveFragment : Fragment() {
 
         adapter.setOnItemClickListener(object : DogAdapter.OnItemClickListener{
             override fun onItemClick(dog: Dog) {
-                val intent = Intent(requireContext(), ActivityDogDetails::class.java)
+                val intent = Intent(requireContext(), ActivityArchiveDetails::class.java)
                 intent.putExtra("openCommand", "DogInfo")
                 intent.putExtra("fireId", dog.fireId)
                 startActivity(intent)

@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/_37sdp"
             android:layout_weight="0.3"
-            android:textSize="@dimen/_16ssp"
+            android:textSize="@dimen/_15ssp"
             android:text="Nazwisko*:"
             android:gravity="center_vertical"/>
 
