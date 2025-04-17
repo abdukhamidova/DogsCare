@@ -13,11 +13,11 @@
         android:theme="@style/Theme.DogsCare"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ActivityMain"
             android:exported="true">
         </activity>
         <activity
-            android:name=".SignInActivity"
+            android:name=".ActivitySignIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,11 +26,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ActivitySignUp"
             android:exported="false">
         </activity>
         <activity
-            android:name=".FormDogActivity"
+            android:name=".ActivityDogDetails"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ActivityAdd"
             android:exported="false">
         </activity>
     </application>

@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.dogscare.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class SignUpActivity: AppCompatActivity(){
+class ActivitySignUp: AppCompatActivity(){
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -36,7 +36,7 @@ class SignUpActivity: AppCompatActivity(){
                 if(pass.equals(confirmPass)){
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener{
                         if(it.isSuccessful){
-                            val intent = Intent(this, SignInActivity::class.java)
+                            val intent = Intent(this, ActivitySignIn::class.java)
                             startActivity(intent)
                         }else{
                             Toast.makeText(this, "Nie udało się założyć konta", Toast.LENGTH_SHORT).show()
@@ -53,7 +53,7 @@ class SignUpActivity: AppCompatActivity(){
         }
 
         binding.textSignedUp.setOnClickListener{
-            val intent = Intent(this, SignInActivity::class.java)
+            val intent = Intent(this, ActivitySignIn::class.java)
             startActivity(intent)
         }
 

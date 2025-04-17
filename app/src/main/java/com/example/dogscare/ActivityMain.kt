@@ -1,26 +1,24 @@
 package com.example.dogscare
 
-import android.content.ContentValues.TAG
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.dogscare.databinding.ActivityMainBinding
-import com.example.dogscare.databinding.ToolbarBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.firestore
 
-class MainActivity : AppCompatActivity() {
+
+
+class ActivityMain : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var header: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,27 +35,31 @@ class MainActivity : AppCompatActivity() {
 
         //region TOOLBAR
         header = findViewById(R.id.toolbarHeader)
+        val buttonSave = findViewById<ImageButton>(R.id.imageButtonSave)
+        val buttonArchive = findViewById<ImageButton>(R.id.imageButtonArchive)
+        buttonSave.visibility = View.GONE
+        buttonArchive.visibility = View.GONE
         //endregion
 
-        replaceFragment(DogListFragment())
+        replaceFragment(ListDogFragment())
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.listOfDogs -> replaceFragment(DogListFragment())
+                R.id.listOfDogs -> replaceFragment(ListDogFragment())
                 R.id.mainCalendar -> replaceFragment(CalendarMainFragment())
-                R.id.dogsArchive -> replaceFragment(ArchiveFragment())
+                R.id.dogsArchive -> replaceFragment(ListArchiveFragment())
 
                 else -> {}
             }
             true
         }
     }
+
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayoutFragments,fragment)
         fragmentTransaction.commit()
     }
-
     fun setToolbarTitle(title: String){
         header.text = title
     }

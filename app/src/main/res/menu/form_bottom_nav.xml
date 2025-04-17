@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
 
-    <item android:title="@string/formularz"
+    <item android:title="Informacje"
         android:id="@+id/formDog"
         android:icon="@drawable/icon_form_40"/>
 
@@ -9,7 +11,7 @@
             android:id="@+id/mainCalendar"
             android:icon="@drawable/icon_calendar_30"/>-->
 
-    <item android:title="@string/ksiazeczka_medyczna"
+    <item android:title="Zdrowie"
         android:id="@+id/medicalBook"
         android:icon="@drawable/icon_med_book_30"/>
 </menu>

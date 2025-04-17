@@ -3,13 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ArchiveFragment">
+    android:background="@color/app_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ListArchiveFragment"
+    tools:ignore="HardcodedText">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dogListRecyclerView"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textViewNotFound"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical" />
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:text="Brak wyników"
+        android:drawablePadding="@dimen/_3sdp"
+        app:drawableStartCompat="@drawable/icon_not_found_24" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="0.9"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:hint="Szukaj"
+                android:autofillHints="name"
+                android:drawableStart="@drawable/icon_search"
+                android:drawablePadding="@dimen/_7sdp"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/icon_filter_30"
+                app:tint="@color/darker_purple"
+                android:contentDescription="Przycisk filtru"/>
+        </LinearLayout>
 
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dogListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:scrollbars="vertical" />
+    </LinearLayout>
 </FrameLayout>

@@ -3,21 +3,52 @@ package com.example.dogscare
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import java.time.LocalDate
+
+enum class ArchiveType {
+    ADOPTION,            //adopcja
+    DEATH,               //śmierć zwierzęcia
+    TRANSFER,            //transfer do innego schroniska
+    OTHER,                //inne
+    ACTIVE,                 //do wyświetlenia na głównej liście
+    ARCHIVED            //do wyświetlenia wszystkich psów z archiwum
+}
 
 //region ==DOG
 data class Dog(
-    var id: String = "",       // ID dokumentu w Firestore
+    var fireId: String = "",    //id psa w bazie
     var name: String = "",     // Imię psa
+    var chip: String = "",      // Numer chip
     var breed: String = "",    // Rasa
-    var bday: String = "",     // Data urodzenia
-    var adopted: Boolean = false, // DLa archiwizacji
-
-    //wydarzenia kalendarzowe
-    //val events: List<Event> = emptyList()
+    var gender: String = "",    // Płeć
+    var weight: String = "",    // Waga
+    var arrivalDate: Timestamp = Timestamp.now(), // domyślna data - aktualna
+    var note: String = "",
+    var archive: ArchiveType = ArchiveType.ACTIVE // dla archiwizacji
 )
 //endregion
 
+//region ==ADOPTION
+data class Adoption(
+    var name: String = "",
+    var surname: String = "",
+    var city: String = "",
+    var street: String = "",
+    var houseNr: String = "",
+    var phoneNr: String = "",
+    var email: String = "",
+    var adoptionDate: Timestamp = Timestamp.now()
+)
+//endregion
+
+//region MEDICAL INFO
+data class Health(
+    var estimatedDoB: Timestamp = Timestamp.now(),
+    var allergies: String = "",
+    var illness: String = ""
+)
+//
 //region ==Event Basic
 data class Event(
     val id: String = "",

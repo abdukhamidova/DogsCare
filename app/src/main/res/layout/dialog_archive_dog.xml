@@ -1,0 +1,70 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_220sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:text="ARCHIWIZUJ"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        android:textColor="@color/dialog_header"
+        android:textAlignment="center" />
+
+    <!-- RadioGroup to klucz -->
+    <RadioGroup
+        android:id="@+id/radioGroupReason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/_20sdp">
+
+        <RadioButton
+            android:id="@+id/radioButtonAdoption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="adopcja"
+            android:textSize="@dimen/_17ssp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDeath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="zgon"
+            android:textSize="@dimen/_17ssp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="transfer"
+            android:textSize="@dimen/_17ssp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="inne"
+            android:textSize="@dimen/_17ssp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/buttonConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Zatwierdź"
+        android:textSize="@dimen/_20ssp"
+        android:textColor="@color/dialog_header"/>
+</LinearLayout>

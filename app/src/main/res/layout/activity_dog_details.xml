@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/app_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.dogscare.FormDogActivity">
+    tools:context="com.example.dogscare.ActivityDogDetails">
 
     <include
         android:id="@+id/toolbar"

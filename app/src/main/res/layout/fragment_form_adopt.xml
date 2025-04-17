@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    tools:context=".FormAdoptFragment"
+    tools:ignore="HardcodedText"
+    android:layout_margin="@dimen/_20sdp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_37sdp"
+        android:textSize="@dimen/_16ssp"
+        android:text="Imię zwierzęcia"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.3"
+            android:textSize="@dimen/_17ssp"
+            android:text="Imię*:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wpisz imię"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--imie-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.3"
+            android:textSize="@dimen/_16ssp"
+            android:text="Nazwisko*:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextSurname"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wpisz nazwisko"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--nazwisko-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.3"
+            android:textSize="@dimen/_17ssp"
+            android:text="Miasto*:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextCity"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wpisz miasto"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--miasto-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.3"
+            android:textSize="@dimen/_17ssp"
+            android:text="Ulica*:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextStreet"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wpisz ulicę"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--ulica-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.3"
+            android:textSize="@dimen/_16ssp"
+            android:text="Nr domu:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextHouseNumber"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wpisz nr domu"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--nr domu-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.3"
+            android:textSize="@dimen/_16ssp"
+            android:text="Telefon*:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wpisz nr telefonu"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--telefon-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.3"
+            android:textSize="@dimen/_16ssp"
+            android:text="E-mail:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wpisz e-mail"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--e-mail-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.5"
+            android:textSize="@dimen/_16ssp"
+            android:text="Data adopcji*:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextAdoptionData"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.8"
+            android:hint="Wybierz datę"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="date"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--data-->
+
+</LinearLayout>

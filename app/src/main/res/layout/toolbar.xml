@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_toolbar"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_43sdp"
-    android:background="@color/white">
+    android:layout_height="@dimen/_40sdp"
+    android:background="@color/main_color"
+    tools:ignore="HardcodedText">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/_11sdp"
         android:layout_marginEnd="@dimen/_11sdp">
+
         <TextView
             android:id="@+id/toolbarHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Tytuł"
-            android:textSize="@dimen/_20sdp" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20ssp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSave"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_save_35_2"
+            android:background="#00000000"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Przycisk zapisz"
+            app:tint="@color/actionBarIcons" />
+
+        <ImageButton
+            android:id="@+id/imageButtonArchive"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_archive_35"
+            android:background="#00000000"
+            android:layout_toStartOf="@id/imageButtonSave"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Przycisk zarchiwizuj"
+            app:tint="@color/actionBarIcons" />
+
     </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>

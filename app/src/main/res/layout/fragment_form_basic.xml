@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormInfoFragment"
-    tools:ignore="HardcodedText">
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/_40sdp"
+    android:background="@color/app_background"
+    tools:context=".FormBasicFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_margin="@dimen/_20sdp"
-        android:orientation="vertical">
+        tools:ignore="HardcodedText">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageViewPicture"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/profile_picture"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:contentDescription="Zdjęcie"
-                />
-
-            <Button
-                android:id="@+id/buttonSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="140dp"
-                android:layout_toEndOf="@+id/imageViewPicture"
-                android:text="@string/zapisz"
-                android:textSize="@dimen/_17sdp" />
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/imageViewPicture"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/profile_picture"
+            android:scaleType="centerCrop"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Zdjęcie"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,8 +33,8 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_weight="0.2"
-                android:textSize="@dimen/_17ssp"
-                android:text="Imę:"
+                android:textSize="@dimen/_16ssp"
+                android:text="Imię*:"
                 android:gravity="center_vertical"/>
 
             <EditText
@@ -68,8 +53,33 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.6"
+                android:textSize="@dimen/_16ssp"
+                android:text="Data przyjęcia:"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/editTextDateArrival"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.8"
+                android:hint="Wybierz datę"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="date"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+        </LinearLayout> <!--data_przyjecia-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
                 android:layout_weight="0.2"
-                android:textSize="@dimen/_17ssp"
+                android:textSize="@dimen/_16ssp"
                 android:text="Chip:"
                 android:gravity="center_vertical"/>
 
@@ -90,7 +100,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_weight="0.2"
-                android:textSize="@dimen/_17ssp"
+                android:textSize="@dimen/_16ssp"
                 android:text="Rasa:"
                 android:gravity="center_vertical"/>
 
@@ -111,7 +121,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_weight="0.2"
-                android:textSize="@dimen/_17ssp"
+                android:textSize="@dimen/_16ssp"
                 android:text="Płeć:"
                 android:gravity="center_vertical"/>
 
@@ -125,68 +135,70 @@
         </LinearLayout> <!--plec-->
 
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.2"
-            android:textSize="@dimen/_17ssp"
-            android:text="Waga:"
-            android:gravity="center_vertical"/>
-
-        <EditText
-            android:id="@+id/editTextWeight"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
-            android:hint="Podaj wagę"
-            android:layout_marginBottom="@dimen/_5sdp"/>
-    </LinearLayout> <!--waga-->
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
-                android:layout_weight="0.6"
-                android:textSize="@dimen/_17ssp"
-                android:text="Data przyjęcia:"
+                android:layout_weight="0.2"
+                android:textSize="@dimen/_16ssp"
+                android:text="Waga:"
                 android:gravity="center_vertical"/>
 
             <EditText
-                android:id="@+id/editTextDateArrival"
+                android:id="@+id/editTextWeight"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_weight="0.8"
-                android:hint="Wybierz datę"
+                android:hint="Podaj wagę"
                 android:layout_marginBottom="@dimen/_5sdp"/>
-        </LinearLayout> <!--data_przyjecia-->
+        </LinearLayout> <!--waga-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
-                android:textSize="@dimen/_17ssp"
-                android:text="Przybliżony wiek podczas przyjęcia:"
+                android:layout_weight="0.2"
+                android:textSize="@dimen/_16ssp"
+                android:text="Wiek:"
                 android:gravity="center_vertical"/>
 
             <EditText
-                android:id="@+id/editTextAgeArrival"
-                android:layout_width="@dimen/_120sdp"
+                android:id="@+id/editTextAge"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
-                android:hint="Wiek"
+                android:layout_weight="0.8"
+                android:clickable="false"
+                android:hint="Tutaj wyświetli się wiek"
                 android:layout_marginBottom="@dimen/_5sdp"/>
-        </LinearLayout> <!--wiek_przyjecie-->
+        </LinearLayout> <!--wiek-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_10sdp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_37sdp"
+                android:textSize="@dimen/_16ssp"
+                android:text="Dodatkowa informacja:"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/editTextNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_37sdp"
+                android:hint="Twoje notatki"
+                android:gravity="top"
+                android:inputType="textMultiLine" />
+        </LinearLayout> <!--dodatkowe info-->
 
     </LinearLayout>
 
-
-</FrameLayout>
+</ScrollView>
