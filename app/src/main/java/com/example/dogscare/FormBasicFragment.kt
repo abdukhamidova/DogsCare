@@ -1,8 +1,9 @@
 package com.example.dogscare
 
 import android.app.DatePickerDialog
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,14 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.dogscare.databinding.FragmentFormBasicBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import java.util.Calendar
 
 
@@ -21,7 +26,6 @@ class FormBasicFragment : Fragment() {
     private lateinit var binding: FragmentFormBasicBinding
     val database = FirebaseFirestore.getInstance()
     val user = FirebaseAuth.getInstance().currentUser
-    private var adopted = false
     private var originalDog: Dog? = null
 
     //data
@@ -29,6 +33,9 @@ class FormBasicFragment : Fragment() {
    //private lateinit var storage: FirebaseStorage
 
     //zdjęcie
+    private lateinit var pickImageLauncher: ActivityResultLauncher<String>
+    private var selectedImageUri: Uri? = null
+
     //private lateinit var imageView: ImageView
     //private var imageUri: Uri? = null
 
@@ -43,8 +50,22 @@ class FormBasicFragment : Fragment() {
 
         //uzupełnienie pól
         if (fireId != null) {
-            if(activity is ActivityDogDetails)
+            if(activity is ActivityDogDetails) {
                 (activity as? ActivityDogDetails)?.setToolbarTitle("Informacje")
+
+                //region DOG PICTURE
+                pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+                    uri?.let {
+                        binding.imageViewPicture.setImageURI(it)
+                        selectedImageUri = it //Uri dla bazy
+                    }
+                }
+
+                binding.imageViewPicture.setOnClickListener{
+                    pickImageLauncher.launch("image/*")
+                }
+                //endregion
+            }
 
             if(activity is ActivityArchiveDetails) {
                 buttonSave.visibility = View.GONE
@@ -64,23 +85,7 @@ class FormBasicFragment : Fragment() {
             if (fireId != null) {
                 updateDogInDatabase(fireId)
             }
-            val intent = Intent(requireContext(), ActivityMain::class.java)
-            startActivity(intent)
-            requireActivity().finish()
         }
-
-        //region DOG PICTURE
-        /*binding.imageViewPicture.setOnClickListener{
-            ImagePicker.with(this)
-                .crop() // Możesz usunąć, jeśli nie chcesz przycinać zdjęcia
-                .galleryOnly()
-                .compress(1024) // Kompresja do 1MB
-                .maxResultSize(1080, 1080) // Maksymalna wielkość
-                .createIntent { intent ->
-                    startForImageResult.launch(intent)
-                }
-        }*/
-        //endregion
 
         return binding.root
     }
@@ -148,6 +153,7 @@ class FormBasicFragment : Fragment() {
         val breed = binding.editTextBreed.text.toString().trim()
         val gender = binding.editTextGender.text.toString().trim()
         val weight = binding.editTextWeight.text.toString().trim()
+        val appearance = binding.editTextAppearance.text.toString().trim()
         val dateString = binding.editTextDateArrival.text.toString().trim()
         val notes = binding.editTextNotes.text.toString().trim()
         val arrivalDate = stringToTimestamp(dateString)
@@ -164,26 +170,53 @@ class FormBasicFragment : Fragment() {
             if (breed != original.breed) updates["breed"] = breed
             if (gender != original.gender) updates["gender"] = gender
             if (weight != original.weight) updates["weight"] = weight
+            if (appearance != original.appearance) updates["appearance"] = appearance
             if (notes != original.note) updates["note"] = notes
             if (arrivalDate != original.arrivalDate) updates["arrivalDate"] = arrivalDate
         }
 
-        if (updates.isEmpty()) {
-            Toast.makeText(requireContext(), "Brak zmian do zapisania.", Toast.LENGTH_SHORT).show()
-            return
+        //region UPDATE DOG PICTURE
+        val newImageUri = selectedImageUri // nowe zdjęcie
+        if (newImageUri != null) {
+            val storageRef = FirebaseStorage.getInstance().reference
+            val imageRef = storageRef.child("dog_images/$userId/$fireId.jpg") // ścieżka do storage
+
+            //(1) nowe zdjęcie
+            imageRef.putFile(newImageUri).addOnSuccessListener {
+                imageRef.downloadUrl.addOnSuccessListener { uri ->
+                    updates["imageUrl"] = uri.toString()
+
+                    //aktualizacja psa
+                    val dogRef = database.collection("users").document(userId)
+                        .collection("dogs").document(fireId)
+
+                    dogRef.update(updates)
+                        .addOnSuccessListener {
+                            Toast.makeText(requireContext(), "Zaktualizowano pieska!", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(requireContext(), "Błąd aktualizacji: ${e.message}.", Toast.LENGTH_LONG).show()
+                        }
+                }
+            }.addOnFailureListener {
+                Toast.makeText(requireContext(), "Błąd ładowania zdjęcia.", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            //jesli zdjecie sie nie zmienilo aktualizuje tylko dane
+            val dogRef = database.collection("users").document(userId)
+                .collection("dogs").document(fireId)
+
+            dogRef.update(updates)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Zaktualizowano pieska!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(requireContext(), "Błąd aktualizacji: ${e.message}.", Toast.LENGTH_LONG).show()
+                }
         }
-
-        val dogRef = database.collection("users").document(userId)
-            .collection("dogs").document(fireId)
-
-        dogRef.update(updates)
-            .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Zaktualizowano pieska!", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Błąd aktualizacji: ${e.message}.", Toast.LENGTH_LONG).show()
-            }
     }
+
+
 
     private fun fetchDogFromDatabase(fireId: String) {
         if (user == null) {
@@ -195,52 +228,45 @@ class FormBasicFragment : Fragment() {
         database.collection("users").document(userId)
             .collection("dogs").document(fireId)
             .get().addOnSuccessListener { document ->
-                if(document != null && document.exists()){
-                    val name = document.getString("name") ?: ""
-                    val chip = document.getString("chip") ?: ""
-                    val breed = document.getString("breed") ?: ""
-                    val gender = document.getString("gender") ?: ""
-                    val weight = document.getString("weight") ?: ""
-                    val notes = document.getString("note") ?: ""
+                if (document != null && document.exists()) {
+                    val dog = document.toObject(Dog::class.java)
 
-                    adopted = document.getBoolean("adopted") ?: false
-                    //data
-                    val arrivalDateTimestamp = document.getTimestamp("arrivalDate")
-                    val arrivalDate = timestampToString(arrivalDateTimestamp)
+                    dog?.let { d ->
+                        with(binding) {
+                            editTextName.setText(d.name)
+                            editTextChip.setText(d.chip)
+                            editTextBreed.setText(d.breed)
+                            editTextGender.setText(d.gender)
+                            editTextWeight.setText(d.weight)
+                            editTextAppearance.setText(d.appearance)
+                            editTextNotes.setText(d.note)
+                            editTextDateArrival.setText(timestampToString(d.arrivalDate))
+                        }
 
-                    //zapisanie w polach
-                    binding.editTextName.setText(name)
-                    binding.editTextChip.setText(chip)
-                    binding.editTextBreed.setText(breed)
-                    binding.editTextGender.setText(gender)
-                    binding.editTextWeight.setText(weight)
-                    binding.editTextNotes.setText(notes)
+                        //dalsze porównanie
+                        originalDog = d
 
-                    //zapisanie aby potem porównywać
-                    originalDog = arrivalDateTimestamp?.let {
-                        Dog(
-                            fireId = fireId,
-                            name = name,
-                            chip = chip,
-                            breed = breed,
-                            gender = gender,
-                            weight = weight,
-                            note = notes,
-                            arrivalDate = it
-                        )
+                        //domyslna data
+                        d.arrivalDate.let {
+                            val cal = Calendar.getInstance()
+                            cal.time = it.toDate()
+                            defaultDate = cal
+                        }
+
+                        //zdjecie
+                        if (d.imageUrl.isNotEmpty()) {
+                            Log.d("DogImage", "Loading image from URL: ${d.imageUrl}")
+                            Glide.with(requireContext())
+                                .load(d.imageUrl)
+                                .into(binding.imageViewPicture)
+                        } else {
+                            Log.d("DogImage", "No image URL found")
+                        }
                     }
-
-                    //data
-                    arrivalDateTimestamp?.let {
-                        val cal = Calendar.getInstance()
-                        cal.time = it.toDate() //ustawienie domyślnej daty
-                        defaultDate = cal
-                    }
-                    binding.editTextDateArrival.setText(arrivalDate)
                 } else {
-                    // jeśli dokument nie istnieje
                     Toast.makeText(requireContext(), "Błąd: nie udało się pobrać psa!", Toast.LENGTH_SHORT).show()
                 }
+
             }.addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Błąd: ${e.message}.",Toast.LENGTH_LONG).show()
             }
@@ -261,7 +287,7 @@ class FormBasicFragment : Fragment() {
             months += 12
         }
 
-        return "$years lat i $months miesięcy"
+        return "lat: $years, miesięcy: $months "
     }
 
     private fun fillAgeField(fireId: String){

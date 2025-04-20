@@ -8,11 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dogscare.databinding.ActivityAddBinding
-import com.google.firebase.auth.FirebaseAuth
+import java.util.Calendar
 
 class ActivityAdd : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var header: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +28,48 @@ class ActivityAdd : AppCompatActivity() {
 
         val dogId = intent.getStringExtra("fireId")
 
+        //region Replace Fragment openCommand
+        val openFragment = intent.getStringExtra("openCommand")
+        when(openFragment){
+            "AddDog" -> replaceFragment(AddDogFragment())
+            "AddShelterEvent" -> {
+                //odbiór daty i przekazanie
+                val selectedDayMillis = intent.getLongExtra("clickedDay", -1L)
+                val selectedCalendar = Calendar.getInstance()
+                if (selectedDayMillis != -1L) {
+                    selectedCalendar.timeInMillis = selectedDayMillis
+                } else {
+                    selectedCalendar.timeInMillis = System.currentTimeMillis()
+                }
+
+                val formFragment = EventShelterFragment()
+                val bundle = Bundle()
+                bundle.putLong("clickedDay", selectedCalendar.timeInMillis)
+                formFragment.arguments = bundle
+                replaceFragment(formFragment)
+            }
+            "AddDogEvent" -> {
+            //odbiór daty i przekazanie
+            val selectedDayMillis = intent.getLongExtra("clickedDay", -1L)
+            val selectedCalendar = Calendar.getInstance()
+            if (selectedDayMillis != -1L) {
+                selectedCalendar.timeInMillis = selectedDayMillis
+            } else {
+                selectedCalendar.timeInMillis = System.currentTimeMillis()
+            }
+
+            val formFragment = EventDogFragment()
+            val bundle = Bundle()
+            bundle.putLong("clickedDay", selectedCalendar.timeInMillis)
+            bundle.putString("fireDogId", dogId)
+            formFragment.arguments = bundle
+            replaceFragment(formFragment)
+        }
+
+            else -> {}
+        }
+        //endregion
+
         //region Replace Fragment openArchive
         val archiveTypeString = intent.getStringExtra("archiveType")
         val archiveType = archiveTypeString?.let { ArchiveType.valueOf(it) }
@@ -38,7 +79,8 @@ class ActivityAdd : AppCompatActivity() {
                 val bundle = Bundle()
                 bundle.putString("fireId", dogId)
                 formAdoptFragment.arguments = bundle
-                replaceFragment(formAdoptFragment)}
+                replaceFragment(formAdoptFragment)
+            }
             ArchiveType.DEATH -> {
                 val formConfirmDeathFragment = FormConfirmDeathFragment()
                 val bundle = Bundle()
@@ -60,7 +102,7 @@ class ActivityAdd : AppCompatActivity() {
                 FormOtherFragment.arguments = bundle
                 replaceFragment(FormOtherFragment)
             }
-            else -> replaceFragment(AddDogFragment())
+            else -> {}
         }
         //endregion
     }

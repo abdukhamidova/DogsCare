@@ -94,8 +94,24 @@
                 android:inputType="textMultiLine"/>
         </LinearLayout> <!--choroby-->
 
+        <TextView
+            android:id="@+id/textViewInjections"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Brak szczepień"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold"
+            android:textColor="@color/darker_purple"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/injectionListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:minHeight="@dimen/_200sdp"
+            android:padding="@dimen/_10sdp"
+            android:scrollbars="vertical" />
     </LinearLayout>
-
-
 
 </ScrollView>

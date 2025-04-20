@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="HardcodedText">
 
+    <item android:title="@string/dogs"
+    android:id="@+id/listOfDogs"
+    android:icon="@drawable/icon_dog_30"/>
+
     <item android:title="@string/calendar"
         android:id="@+id/mainCalendar"
         android:icon="@drawable/icon_calendar_30"/>
 
-    <item android:title="@string/dogs"
-        android:id="@+id/listOfDogs"
-        android:icon="@drawable/icon_dog_30"/>
-
-    <item android:title="Adopcje"
+    <item android:title="Archiwum"
         android:id="@+id/dogsArchive"
         android:icon="@drawable/icon_archive_30"/>
 </menu>

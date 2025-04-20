@@ -45,13 +45,14 @@ class ListDogFragment : Fragment() {
         //dodaj psa
         binding.floatingButtonAdd.setOnClickListener{
             val intent = Intent(requireContext(), ActivityAdd::class.java)
+            intent.putExtra("openCommand", "AddDog")
             startActivity(intent)
         }
 
         //wyszukaj
         binding.editTextSearch.addTextChangedListener{ text ->
             val query = text.toString().trim()
-            if(query.isNotEmpty()) viewModel.filterDogs(query)
+            if(query.isNotEmpty()) viewModel.filterDogs(query, ArchiveType.ACTIVE)
             else viewModel.fetchDogsFromDatabase(ArchiveType.ACTIVE)
         }
 
@@ -61,7 +62,6 @@ class ListDogFragment : Fragment() {
         super.onResume()
         viewModel.fetchDogsFromDatabase(ArchiveType.ACTIVE) // ponowne pobranie danych
     }
-
 
     private fun setupRecyclerView() {
         // Przekazujemy funkcję kliknięcia do adaptera

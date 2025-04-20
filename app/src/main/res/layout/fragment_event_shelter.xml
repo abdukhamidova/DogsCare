@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/_40sdp"
+    android:background="@color/app_background"
+    tools:context=".EventShelterFragment"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_20sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16ssp"
+                android:text="Tytuł*:"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/editTextHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_37sdp"
+                android:hint="Nazwa wydarzenia"
+                android:gravity="top"
+                android:overScrollMode="always"
+                android:inputType="textMultiLine"/>
+        </LinearLayout> <!--tytuł-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.4"
+                android:textSize="@dimen/_15ssp"
+                android:text="Data początkowa*:"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/editTextStartDate"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.4"
+                android:hint="Wybierz datę"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="date"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+        </LinearLayout> <!--data start-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.4"
+                android:textSize="@dimen/_16ssp"
+                android:text="Data końcowa:"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/editTextEndDate"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.4"
+                android:hint="Wybierz datę"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="date"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+        </LinearLayout> <!--data end-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.2"
+                android:textSize="@dimen/_16ssp"
+                android:text="Czas:"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/editTextEventTime"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_weight="0.8"
+                android:hint="Wybierz godzinę"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="time"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+        </LinearLayout> <!--czas-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:textSize="@dimen/_16ssp"
+                android:text="Opis:"
+                android:gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/editTextAdditonalNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_37sdp"
+                android:hint="Twoje notatki"
+                android:gravity="top"
+                android:overScrollMode="always"
+                android:inputType="textMultiLine"/>
+        </LinearLayout> <!--note-->
+    </LinearLayout>
+</ScrollView>

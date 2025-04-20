@@ -7,11 +7,11 @@
         android:id="@+id/formDog"
         android:icon="@drawable/icon_form_40"/>
 
-    <!--    <item android:title="@string/calendar"
-            android:id="@+id/mainCalendar"
-            android:icon="@drawable/icon_calendar_30"/>-->
-
     <item android:title="Zdrowie"
         android:id="@+id/medicalBook"
         android:icon="@drawable/icon_med_book_30"/>
+
+    <item android:title="@string/calendar"
+        android:id="@+id/dogCalendar"
+        android:icon="@drawable/icon_calendar_30"/>
 </menu>

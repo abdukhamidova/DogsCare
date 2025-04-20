@@ -74,8 +74,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp">
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
@@ -89,14 +88,15 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_weight="0.8"
-                android:hint="Nr chip"
+                android:hint="Podaj nr chip"
                 android:layout_marginBottom="@dimen/_5sdp"/>
         </LinearLayout> <!--chip-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_37sdp"
@@ -177,6 +177,29 @@
                 android:hint="Tutaj wyświetli się wiek"
                 android:layout_marginBottom="@dimen/_5sdp"/>
         </LinearLayout> <!--wiek-->
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:textSize="@dimen/_16ssp"
+            android:text="Wygląd:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/_37sdp"
+            android:hint="Wpisz kolor sierści i znaki szczególne"
+            android:gravity="top"
+            android:overScrollMode="always"
+            android:inputType="textMultiLine"/>
+    </LinearLayout> <!--umaszczenie-->
 
         <LinearLayout
             android:layout_width="match_parent"

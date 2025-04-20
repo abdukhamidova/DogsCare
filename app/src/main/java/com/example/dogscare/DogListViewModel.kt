@@ -26,6 +26,7 @@ class DogsListViewModel : ViewModel() {
                         val dogName = document.getString("name") ?: ""
                         val dogArrivalDate = document.getTimestamp("arrivalDate")
                         val dogArchive = ArchiveType.valueOf(document.getString("archive") ?: "ACTIVE")
+                        val dogImageUrl = document.getString("imageUrl") ?: ""
 
                         if (dogName.isNotEmpty() && dogArrivalDate != null) {
                             dogs.add(
@@ -33,12 +34,13 @@ class DogsListViewModel : ViewModel() {
                                     fireId = fireId,
                                     name = dogName,
                                     arrivalDate = dogArrivalDate,
-                                    archive = dogArchive
+                                    archive = dogArchive,
+                                    imageUrl = dogImageUrl
                                 )
                             )
                         }
                     }
-                    mutDogList.value = dogs
+                    mutDogList.value = dogs.sortedBy { it.name.lowercase() }
                 }
                 .addOnFailureListener { exception ->
                     exception.printStackTrace()
@@ -47,9 +49,10 @@ class DogsListViewModel : ViewModel() {
     }
 
     //filtrowanie psow
-    fun filterDogs(query: String){
-        val filteredDogs = mutDogList.value?.filter{
-            it.name.contains(query, ignoreCase = true)
+    fun filterDogs(query: String, archiveType: ArchiveType){
+        val filteredDogs = mutDogList.value?.filter {
+            it.name.contains(query, ignoreCase = true) &&
+                    it.archive == archiveType
         }
         mutDogList.value = filteredDogs ?: emptyList()
     }
@@ -59,7 +62,8 @@ class DogsListViewModel : ViewModel() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         if (userId != null) {
-            db.collection("users").document(userId).collection("dogs")
+            db.collection("users").document(userId)
+                .collection("dogs")
                 .get()
                 .addOnSuccessListener { documents ->
                     val archivedDogs = mutableListOf<Dog>()
@@ -68,6 +72,7 @@ class DogsListViewModel : ViewModel() {
                         val dogName = document.getString("name") ?: ""
                         val dogArrivalDate = document.getTimestamp("arrivalDate")
                         val dogArchive = ArchiveType.valueOf(document.getString("archive") ?: "ACTIVE")
+                        val dogImageUrl = document.getString("imageUrl") ?: ""
 
                         //filtr psow nie aktywnych
                         if (dogName.isNotEmpty() && dogArrivalDate != null && dogArchive != ArchiveType.ACTIVE) {
@@ -76,12 +81,13 @@ class DogsListViewModel : ViewModel() {
                                     fireId = fireId,
                                     name = dogName,
                                     arrivalDate = dogArrivalDate,
-                                    archive = dogArchive
+                                    archive = dogArchive,
+                                    imageUrl = dogImageUrl
                                 )
                             )
                         }
                     }
-                    mutDogList.value = archivedDogs
+                    mutDogList.value = archivedDogs.sortedBy { it.name.lowercase() }
                 }
                 .addOnFailureListener { exception ->
                     exception.printStackTrace()

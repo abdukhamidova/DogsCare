@@ -20,10 +20,12 @@
         android:padding="@dimen/_3sdp"
         android:paddingStart="@dimen/_7sdp">
 
+
         <ImageView
             android:id="@+id/dogPicture"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            android:contentDescription="zdjecie"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_picture" />
 

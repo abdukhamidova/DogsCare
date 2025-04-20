@@ -2,6 +2,7 @@ package com.example.dogscare
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -28,6 +29,7 @@ class ActivityDogDetails :AppCompatActivity() {
         //region TOOLBAR
         header = findViewById(R.id.toolbarHeader)
         val buttonArchive = findViewById<ImageButton>(R.id.imageButtonArchive)
+        val buttonSave = findViewById<ImageButton>(R.id.imageButtonSave)
         //endregion
 
         val dogId = intent.getStringExtra("fireId")
@@ -55,18 +57,31 @@ class ActivityDogDetails :AppCompatActivity() {
         binding.bottomNavigationViewForm.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.formDog -> {
-                    val formInfoFragment = FormBasicFragment()
-                    val bundle = Bundle()
-                    bundle.putString("fireId", dogId)
-                    formInfoFragment.arguments = bundle
-                    replaceFragment(formInfoFragment)
+                    buttonSave.setImageResource(R.drawable.icon_save_35_2)
+                    buttonArchive.visibility = View.VISIBLE
+                    val formFragment = FormBasicFragment()
+                    val bun = Bundle()
+                    bun.putString("fireId", dogId)
+                    formFragment.arguments = bun
+                    replaceFragment(formFragment)
                 }
                 R.id.medicalBook -> {
-                    val formMedicalFragment = FormMedicalFragment()
-                    val bundle = Bundle()
-                    bundle.putString("fireId", dogId)
-                    formMedicalFragment.arguments = bundle
-                    replaceFragment(formMedicalFragment)
+                    buttonSave.setImageResource(R.drawable.icon_save_35_2)
+                    buttonArchive.visibility = View.GONE
+                    val formFragment = FormMedicalFragment()
+                    val bun = Bundle()
+                    bun.putString("fireId", dogId)
+                    formFragment.arguments = bun
+                    replaceFragment(formFragment)
+                }
+                R.id.dogCalendar -> {
+                    buttonSave.setImageResource(R.drawable.icon_add_30)
+                    buttonArchive.visibility = View.GONE
+                    val formFragment = CalendarDogFragment()
+                    val bun = Bundle()
+                    bun.putString("fireId", dogId)
+                    formFragment.arguments = bun
+                    replaceFragment(formFragment)
                 }
                 else -> {}
             }

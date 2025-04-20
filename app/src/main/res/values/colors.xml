@@ -7,12 +7,19 @@
     <color name="greyish_light_purple">#F6F4F6</color>
     <color name="greyish_green">#CADECA</color>
     <color name="darker_greyish_green">#A8CAA8</color>
+    <color name="green_dark">#388E3C</color>
+    <color name="green_light">#C8E6C9</color>
     <color name="green">#4D9530</color>
+    <color name="yellow">#E7D42B</color>
+    <color name="red">#E72B2B</color>
     <color name="light_purple">#BB95D0</color>
     <color name="darker_purple">#966EB1</color>
+    <color name="dark_purple">#855E99</color>
     <color name="main_color">@color/light_purple</color>
     <color name="app_background">@color/greyish_light_purple</color>
     <color name="actionBarIcons">@color/white</color>
     <color name="actionBarText">@color/white</color>
     <color name="dialog_header">@color/darker_purple</color>
+    <color name="clickedDay_label">@color/darker_purple</color>
+    <color name="today_label">@color/yellow</color>
 </resources>

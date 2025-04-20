@@ -58,8 +58,9 @@ class ListArchiveFragment : Fragment() {
         //wyszukaj
         binding.editTextSearch.addTextChangedListener{ text ->
             val query = text.toString().trim()
-            if(query.isNotEmpty()) viewModel.filterDogs(query)
-            else viewModel.fetchArchivedDogsFromDatabase()
+            if(query.isNotEmpty()) viewModel.filterDogs(query, selectedArchiveType)
+            else if(selectedArchiveType == ArchiveType.ARCHIVED) viewModel.fetchArchivedDogsFromDatabase()
+            else viewModel.fetchDogsFromDatabase(selectedArchiveType)
         }
 
     }

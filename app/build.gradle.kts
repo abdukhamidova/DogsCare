@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -60,5 +61,8 @@ dependencies {
 
     //kalendarz
     implementation ("com.applandeo:material-calendar-view:1.9.2")
-    //implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+    //zdjecie
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 }

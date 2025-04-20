@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -41,12 +42,28 @@ class ActivityMain : AppCompatActivity() {
         buttonArchive.visibility = View.GONE
         //endregion
 
+
+        /*val colorStateList = ContextCompat.getColorStateList(this, R.color.my_selector)
+        binding.bottomNavigationView.itemIconTintList = colorStateList
+        binding.bottomNavigationView.itemTextColor = colorStateList*/
+
+
         replaceFragment(ListDogFragment())
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.listOfDogs -> replaceFragment(ListDogFragment())
-                R.id.mainCalendar -> replaceFragment(CalendarMainFragment())
-                R.id.dogsArchive -> replaceFragment(ListArchiveFragment())
+                R.id.listOfDogs -> {
+                    replaceFragment(ListDogFragment())
+                    buttonSave.visibility = View.GONE
+                }
+                R.id.mainCalendar -> {
+                    replaceFragment(CalendarShelterFragment())
+                    buttonSave.visibility = View.VISIBLE
+                    buttonSave.setImageResource(R.drawable.icon_add_30)
+                }
+                R.id.dogsArchive -> {
+                    replaceFragment(ListArchiveFragment())
+                    buttonSave.visibility = View.GONE
+                }
 
                 else -> {}
             }

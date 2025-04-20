@@ -43,17 +43,18 @@ class ActivityArchiveDetails : AppCompatActivity(){
         val dogId = intent.getStringExtra("fireId")
 
         //region deafult fragment
-        val formInfoFragment = FormBasicFragment()
-        val bundle = Bundle()
-        bundle.putString("fireId", dogId)
-        formInfoFragment.arguments = bundle
-        replaceFragment(formInfoFragment)
+        val formFragment = FormBasicFragment()
+        val bun = Bundle()
+        bun.putString("fireId", dogId)
+        formFragment.arguments = bun
+        replaceFragment(formFragment)
         //endregion
 
         //region fragment replace BOTTOM NAV
         binding.bottomNavigationViewForm.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.formDog -> {
+                    buttonSave.visibility = View.GONE
                     val formInfoFragment = FormBasicFragment()
                     val bundle = Bundle()
                     bundle.putString("fireId", dogId)
@@ -61,12 +62,14 @@ class ActivityArchiveDetails : AppCompatActivity(){
                     replaceFragment(formInfoFragment)
                 }
                 R.id.medicalBook -> {
+                    buttonSave.visibility = View.GONE
                     val formMedicalFragment = FormMedicalFragment()
                     val bundle = Bundle()
                     bundle.putString("fireId", dogId)
                     formMedicalFragment.arguments = bundle
                     replaceFragment(formMedicalFragment)
-                }R.id.archiveInfo -> {
+                }
+                R.id.archiveInfo -> {
                     if (dogId != null) {
                         fetchArchiveType(dogId){ archiveType ->
                             val formArchive = when (archiveType) {
@@ -84,6 +87,14 @@ class ActivityArchiveDetails : AppCompatActivity(){
                             }else Toast.makeText(this, "Błąd", Toast.LENGTH_SHORT).show()
                         }
                     }
+                }
+                R.id.dogCalendar -> {
+                    buttonSave.visibility = View.GONE
+                    val formCalFragment = CalendarDogFragment()
+                    val bundle = Bundle()
+                    bundle.putString("fireId", dogId)
+                    formCalFragment.arguments = bundle
+                    replaceFragment(formCalFragment)
                 }
                 else -> {}
             }

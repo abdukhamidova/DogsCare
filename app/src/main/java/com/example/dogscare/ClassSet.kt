@@ -23,8 +23,10 @@ data class Dog(
     var breed: String = "",    // Rasa
     var gender: String = "",    // Płeć
     var weight: String = "",    // Waga
+    var appearance: String = "",    // Wygląd
     var arrivalDate: Timestamp = Timestamp.now(), // domyślna data - aktualna
     var note: String = "",
+    var imageUrl: String = "", //URL zdjęcia psa
     var archive: ArchiveType = ArchiveType.ACTIVE // dla archiwizacji
 )
 //endregion
@@ -42,62 +44,34 @@ data class Adoption(
 )
 //endregion
 
-//region MEDICAL INFO
-data class Health(
-    var estimatedDoB: Timestamp = Timestamp.now(),
-    var allergies: String = "",
-    var illness: String = ""
-)
-//
-//region ==Event Basic
-data class Event(
-    val id: String = "",
-    val date: String = "",
-    val name: String = "",
-    val note: String = "",
-
-    val type: EventType = EventType.SHELTER_EVENT
+//region ==Shelter Event
+data class ShelterEvent(
+    var fireId: String = "",
+    var startDate:Timestamp = Timestamp.now(),
+    var endDate:Timestamp = Timestamp.now(),
+    var time:String = "",
+    var header: String = "",
+    var note: String = ""
 )
 
-enum class EventType {
-    SHELTER_EVENT, // wydarzenie schroniska
-    DOG_EVENT // wydarzenie konkretnego psa
-}
 //endregion
 
+data class EventDisplayModel(
+    var fireId: String = "",
+    var header: String = "",
+    var startDate: Timestamp = Timestamp.now(),
+    var endDate: Timestamp = Timestamp.now()
+)
 
-/*
-//region ==Event Process
-class EventRepository{
-    private val events = mutableListOf<Event>() //lista wydarzen
+// region ==Dog Event
+data class DogEvent(
+    var fireId: String = "",
+    var startDate:Timestamp = Timestamp.now(),
+    var endDate:Timestamp = Timestamp.now(),
+    var time:String = "",
+    var header: String = "",
+    var note: String = "",
+    var injection: Boolean = false
+)
+//endregion
 
-    fun addEvent(event: Event){
-        events.add(event)
-    }
-
-*//*    fun getEventsThatDate(date: LocalDate, filter: List<EventType>): List<Event>{
-        return events.filter{
-            it.date == date && it.type in filter
-        }
-    }*//*
-
-   // fun getAllEvents(): List<Event> = events
-}
-
-class CalendarViewModel : ViewModel(){
-    private val repository = EventRepository()
-    private val _events = MutableLiveData<List<Event>>()
-    val events: LiveData<List<Event>> get() = _events
-
-    *//*private val selectedFilters = MutableLiveData<List<EventType>>(listOf(EventType.SHELTER_EVENT))
-
-    fun loadEvents(date: LocalDate) {
-        _events.value = repository.getEventsForDate(date, selectedFilters.value ?: listOf())
-    }
-
-    fun updateFilters(filters: List<EventType>) {
-        selectedFilters.value = filters
-    }*//*
-}
-
-//endregion*/
