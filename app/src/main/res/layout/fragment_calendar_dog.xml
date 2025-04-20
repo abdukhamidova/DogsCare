@@ -19,7 +19,7 @@
             android:id="@+id/calendarViewDogCalendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:headerColor="@color/darker_purple"
+            app:headerColor="@color/calendar_color"
             app:headerLabelColor="@color/white"
             app:todayLabelColor="@color/today_label">
         </com.applandeo.materialcalendarview.CalendarView>
@@ -38,7 +38,7 @@
                 android:text="Brak wydarzeń"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
-                android:textColor="@color/darker_purple"/>
+                android:textColor="@color/calendar_color"/>
 
             <ImageButton
                 android:id="@+id/imageButtonAddDayEvent"
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:src="@drawable/icon_add_30"
                 android:contentDescription="Przycisk dodaj"
-                app:tint="@color/darker_purple" />
+                app:tint="@color/calendar_color" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

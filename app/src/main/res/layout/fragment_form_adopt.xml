@@ -24,18 +24,16 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_10sdp">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.3"
             android:textSize="@dimen/_17ssp"
             android:text="Imię*:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextName"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wpisz imię"
             android:layout_marginBottom="@dimen/_5sdp"/>
     </LinearLayout> <!--imie-->
@@ -45,18 +43,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.3"
             android:textSize="@dimen/_15ssp"
             android:text="Nazwisko*:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextSurname"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wpisz nazwisko"
             android:layout_marginBottom="@dimen/_5sdp"/>
     </LinearLayout> <!--nazwisko-->
@@ -67,18 +63,16 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_10sdp">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.3"
             android:textSize="@dimen/_17ssp"
             android:text="Miasto*:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextCity"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wpisz miasto"
             android:layout_marginBottom="@dimen/_5sdp"/>
     </LinearLayout> <!--miasto-->
@@ -88,18 +82,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.3"
             android:textSize="@dimen/_17ssp"
             android:text="Ulica*:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextStreet"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wpisz ulicę"
             android:layout_marginBottom="@dimen/_5sdp"/>
     </LinearLayout> <!--ulica-->
@@ -109,18 +101,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.3"
             android:textSize="@dimen/_16ssp"
             android:text="Nr domu:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextHouseNumber"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wpisz nr domu"
             android:layout_marginBottom="@dimen/_5sdp"/>
     </LinearLayout> <!--nr domu-->
@@ -131,18 +121,16 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_10sdp">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.3"
             android:textSize="@dimen/_16ssp"
             android:text="Telefon*:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextPhone"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wpisz nr telefonu"
             android:layout_marginBottom="@dimen/_5sdp"/>
     </LinearLayout> <!--telefon-->
@@ -152,18 +140,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.3"
             android:textSize="@dimen/_16ssp"
             android:text="E-mail:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextEmail"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wpisz e-mail"
             android:layout_marginBottom="@dimen/_5sdp"/>
     </LinearLayout> <!--e-mail-->
@@ -174,18 +160,16 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_10sdp">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.5"
             android:textSize="@dimen/_16ssp"
-            android:text="Data adopcji*:"
+            android:text="Data*:"
             android:gravity="center_vertical"/>
 
         <EditText
             android:id="@+id/editTextAdoptionData"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
-            android:layout_weight="0.8"
             android:hint="Wybierz datę"
             android:focusable="false"
             android:clickable="true"

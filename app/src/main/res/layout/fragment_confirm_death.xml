@@ -31,18 +31,16 @@
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/_10sdp">
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_37sdp"
-                android:layout_weight="0.6"
                 android:textSize="@dimen/_16ssp"
                 android:text="Data padnięcia*:"
                 android:gravity="center_vertical"/>
 
             <EditText
                 android:id="@+id/editTextDeathDate"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_37sdp"
-                android:layout_weight="0.8"
                 android:hint="Wybierz datę"
                 android:focusable="false"
                 android:clickable="true"
@@ -55,18 +53,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_37sdp"
-                android:layout_weight="0.6"
                 android:textSize="@dimen/_16ssp"
                 android:text="Czas padnięcia:"
                 android:gravity="center_vertical"/>
 
             <EditText
                 android:id="@+id/editTextDeathTime"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_37sdp"
-                android:layout_weight="0.8"
                 android:hint="Wybierz godzinę"
                 android:focusable="false"
                 android:clickable="true"

@@ -48,9 +48,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/_7sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:contentDescription="Dodaj nowego psa"
-        android:backgroundTint="@color/main_color"
+        android:backgroundTint="@color/actionBar_color"
         android:src="@drawable/icon_add_30"
+        app:tint = "@color/white"
         app:fabSize="normal" />
 
 </FrameLayout>

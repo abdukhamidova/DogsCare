@@ -36,10 +36,12 @@ class FormMedicalFragment : Fragment() {
         (activity as? ActivityDogDetails)?.setToolbarTitle("Zdrowie")
         val fireId = arguments?.getString("fireId")
 
-        binding.editTextEstimatedDoB.setOnClickListener{
-            showDatePickerDialog()
+        if(activity is ActivityDogDetails) {
+            (activity as? ActivityDogDetails)?.setToolbarTitle("Zdrowie")
+            binding.editTextEstimatedDoB.setOnClickListener {
+                showDatePickerDialog()
+            }
         }
-
         if (fireId != null) {
             //uzupełnienie pól
             fetchName(fireId) { name ->

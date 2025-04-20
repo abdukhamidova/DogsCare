@@ -43,11 +43,6 @@ class ActivityMain : AppCompatActivity() {
         //endregion
 
 
-        /*val colorStateList = ContextCompat.getColorStateList(this, R.color.my_selector)
-        binding.bottomNavigationView.itemIconTintList = colorStateList
-        binding.bottomNavigationView.itemTextColor = colorStateList*/
-
-
         replaceFragment(ListDogFragment())
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){

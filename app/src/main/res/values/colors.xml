@@ -15,11 +15,18 @@
     <color name="light_purple">#BB95D0</color>
     <color name="darker_purple">#966EB1</color>
     <color name="dark_purple">#855E99</color>
-    <color name="main_color">@color/light_purple</color>
+
     <color name="app_background">@color/greyish_light_purple</color>
+    <color name="icon_color">@color/green_dark</color>
+    <color name="navMenu_color">@color/green_dark</color>
+    <color name="navMenu_icon">@color/white</color>
+
+    <color name="actionBar_color">@color/green_dark</color>
     <color name="actionBarIcons">@color/white</color>
     <color name="actionBarText">@color/white</color>
-    <color name="dialog_header">@color/darker_purple</color>
-    <color name="clickedDay_label">@color/darker_purple</color>
+
+    <color name="dialog_header">@color/green_dark</color>
+    <color name="calendar_color">@color/green</color>
+    <color name="clickedDay_label">@color/green</color>
     <color name="today_label">@color/yellow</color>
 </resources>

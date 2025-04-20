@@ -45,8 +45,10 @@ class DogAdapter(
                     .circleCrop()
                     .into(itemView.findViewById(R.id.dogPicture))
             } else {
-                itemView.findViewById<ImageView>(R.id.dogPicture)
-                    .setImageResource(R.drawable.profile_picture)
+                Glide.with(itemView.context)
+                    .load(R.drawable.profile_picture) // <- ładowanie lokalnego obrazka jako fallback
+                    .circleCrop()
+                    .into(itemView.findViewById(R.id.dogPicture))
             }
 
             itemView.setOnClickListener {

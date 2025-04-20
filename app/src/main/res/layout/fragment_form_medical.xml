@@ -102,7 +102,7 @@
             android:text="Brak szczepień"
             android:textSize="@dimen/_15ssp"
             android:textStyle="bold"
-            android:textColor="@color/darker_purple"/>
+            android:textColor="@color/calendar_color"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/injectionListRecyclerView"
