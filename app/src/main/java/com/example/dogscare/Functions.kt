@@ -19,17 +19,33 @@ fun myDateFormat(year: Int, monthOfYear: Int, dayOfMonth: Int) : String{
 
 fun stringToTimestamp(dateString: String): Timestamp {
     val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+    dateFormat.timeZone = TimeZone.getTimeZone("Europe/Warsaw")
+
     return try {
-        val date = dateFormat.parse(dateString) // konwertuje string na Date
-        Timestamp(date) // konwertuje Date na Timestamp
+        val date = dateFormat.parse(dateString)
+        val cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Warsaw"))
+        cal.time = date!!
+        cal.set(Calendar.HOUR_OF_DAY, 12)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+
+        Timestamp(cal.time)
     } catch (e: ParseException) {
         e.printStackTrace()
-        Timestamp.now() // W przypadku błędu, zwróć bieżący Timestamp
+        Timestamp.now()
     }
 }
 
 fun timestampToString(timestamp: Timestamp?): String {
+    if (timestamp == null) {
+        return ""
+    }
+
     val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-    return dateFormat.format(timestamp?.toDate() ?: 0) // konwertuje Timestamp na Date a potem na String
+    dateFormat.timeZone = TimeZone.getTimeZone("Europe/Warsaw")
+    return dateFormat.format(timestamp.toDate())
 }
+
+
 

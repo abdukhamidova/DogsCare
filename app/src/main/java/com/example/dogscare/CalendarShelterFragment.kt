@@ -2,6 +2,7 @@ package com.example.dogscare
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -56,11 +57,14 @@ class CalendarShelterFragment : Fragment() {
                 clickedDay = selectedDay.calendar
                 val clickedDate = Timestamp(selectedDay.calendar.time)
                 val dayEvents = events.filter { event ->
-                    val start = event.startDate.toDate()
-                    val end = event.endDate.toDate()
-                    val clicked = clickedDate.toDate()
+                    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val clicked = sdf.parse(sdf.format(clickedDate.toDate()))
+                    val start = sdf.parse(sdf.format(event.startDate.toDate()))
+                    val end = sdf.parse(sdf.format(event.endDate.toDate()))
+
                     !clicked.before(start) && !clicked.after(end)
                 }
+
 
                 setInformationLabel(dayEvents)
                 eventAdapter.updateList(dayEvents)
@@ -160,14 +164,12 @@ class CalendarShelterFragment : Fragment() {
     }
 
     private fun getEventsFromDatabase(){
-        //uzytkownik
         if (user == null) {
             Toast.makeText(requireContext(), "Błąd: użytkownik niezalogowany!", Toast.LENGTH_SHORT).show()
             return
         }
         val userId = user.uid
 
-        //pobieranie wydarzen
         database.collection("users").document(userId)
             .collection("events")
             .get()
@@ -178,10 +180,10 @@ class CalendarShelterFragment : Fragment() {
                     val event = document.toObject(EventDisplayModel::class.java)
                     event.fireId = document.id
 
-                    events.add(event)   //lista wszystkich wydarzen
-                    addToDates(event.startDate, event.endDate)  //lista unikalnych dat
+                    events.add(event)
+                    addToDates(event.startDate, event.endDate)
                 }
-                markEventDays() //oznaczenie dni z wydarzeniami
+                markEventDays()
             }
             .addOnFailureListener { exception ->
                 exception.printStackTrace()
@@ -190,8 +192,8 @@ class CalendarShelterFragment : Fragment() {
 
     private fun addToDates(start: Timestamp, end: Timestamp) {
         val calendar = Calendar.getInstance()
-        calendar.time = start.toDate()  //data początkowa
-        val endDate = end.toDate()  //data końcowa
+        calendar.time = start.toDate()
+        val endDate = end.toDate()
 
         while (!calendar.time.after(endDate)) {
             val dateTimestamp = Timestamp(calendar.time)

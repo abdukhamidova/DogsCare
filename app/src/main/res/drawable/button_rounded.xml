@@ -11,7 +11,7 @@
 
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/_9sdp" /> <!-- Adjust the radius as needed -->
+            <corners android:radius="@dimen/_5sdp" /> <!-- Adjust the radius as needed -->
             <solid android:color="@color/white" />
             <padding android:left="@dimen/_13sdp" />
             <padding android:right="@dimen/_13sdp"/>

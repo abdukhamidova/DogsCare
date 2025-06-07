@@ -13,8 +13,6 @@ import androidx.fragment.app.Fragment
 import com.example.dogscare.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
-
-
 class ActivityMain : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -38,10 +36,14 @@ class ActivityMain : AppCompatActivity() {
         header = findViewById(R.id.toolbarHeader)
         val buttonSave = findViewById<ImageButton>(R.id.imageButtonSave)
         val buttonArchive = findViewById<ImageButton>(R.id.imageButtonArchive)
-        buttonSave.visibility = View.GONE
         buttonArchive.visibility = View.GONE
+        buttonSave.visibility = View.VISIBLE
+        buttonSave.setImageResource(R.drawable.icon_logout)
         //endregion
 
+        buttonSave.setOnClickListener {
+            LogoutDialog(this).show()
+        }
 
         replaceFragment(ListDogFragment())
         binding.bottomNavigationView.setOnItemSelectedListener {

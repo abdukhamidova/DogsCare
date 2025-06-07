@@ -36,17 +36,17 @@ class DogAdapter(
             dogName.text = dog.name
             dogAdmissionDate.text = data
 
-            //zdjecie
+
             if (dog.imageUrl.isNotEmpty()) {
                 Glide.with(itemView.context)
                     .load(dog.imageUrl)
-                    .placeholder(R.drawable.profile_picture) // domyślne zdjęcie
-                    .error(R.drawable.profile_picture)       //jakby był błąd
+                    .placeholder(R.drawable.profile_picture)
+                    .error(R.drawable.profile_picture)
                     .circleCrop()
                     .into(itemView.findViewById(R.id.dogPicture))
             } else {
                 Glide.with(itemView.context)
-                    .load(R.drawable.profile_picture) // <- ładowanie lokalnego obrazka jako fallback
+                    .load(R.drawable.profile_picture)
                     .circleCrop()
                     .into(itemView.findViewById(R.id.dogPicture))
             }

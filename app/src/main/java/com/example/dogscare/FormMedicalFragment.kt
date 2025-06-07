@@ -16,6 +16,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
+import java.util.Date
 
 class FormMedicalFragment : Fragment() {
     private lateinit var binding: FragmentFormMedicalBinding
@@ -23,6 +24,8 @@ class FormMedicalFragment : Fragment() {
     val user = FirebaseAuth.getInstance().currentUser
     private lateinit var eventAdapter: EventAdapter
     private val events = mutableListOf<EventDisplayModel>()
+
+    private var backButton = true
 
     //data
     private var defaultDate: Calendar = Calendar.getInstance() // domyślnie dziś
@@ -50,11 +53,24 @@ class FormMedicalFragment : Fragment() {
             fetchMedicalData(fireId)
 
             //szczepienia
-            getEventsFromDatabase(fireId)
+            getPastInjectionsFromDatabase(fireId)
             setupRecyclerView(fireId)
 
             buttonSave.setOnClickListener{
                 updateMedicalInfo(fireId)
+            }
+
+            binding.imageButtonChange.setOnClickListener{
+                if(backButton) {
+                    binding.imageButtonChange.setImageResource(R.drawable.icon_back_30)
+                    getFutureInjectionsFromDatabase(fireId)
+                    backButton = false
+                }
+                else {
+                    binding.imageButtonChange.setImageResource(R.drawable.icon_forward_30)
+                    getPastInjectionsFromDatabase(fireId)
+                    backButton = true
+                }
             }
         }
 
@@ -192,7 +208,7 @@ class FormMedicalFragment : Fragment() {
         datePickerDialog.show()
     }
 
-    private fun getEventsFromDatabase(fireDogId : String){
+    private fun getFutureInjectionsFromDatabase(fireDogId : String){
         //uzytkownik
         if (user == null) {
             Toast.makeText(requireContext(), "Błąd: użytkownik niezalogowany!", Toast.LENGTH_SHORT).show()
@@ -202,25 +218,88 @@ class FormMedicalFragment : Fragment() {
 
         events.clear()
 
-        //pobieranie wydarzen
+        // pobieranie wydarzeń
         database.collection("users").document(userId)
             .collection("dogs").document(fireDogId)
             .collection("events")
-            .whereEqualTo("injection", true)    //filtr
+            .whereEqualTo("injection", true)
             .get()
             .addOnSuccessListener { documents ->
+                val allEvents = mutableListOf<EventDisplayModel>()
+
                 for (document in documents) {
                     val event = document.toObject(EventDisplayModel::class.java)
                     event.fireId = document.id
-
-                    events.add(event)   //lista wszystkich szczepień
+                    allEvents.add(event)
                 }
-                if(events.isEmpty()) binding.textViewInjections.text = "Brak szczepień"
-                else {
+
+                val futureEvents = allEvents.filter { event ->
+                    event.startDate.toDate().after(Date())
+                }
+
+                events.clear()
+                events.addAll(futureEvents)
+
+                if (events.isEmpty()) {
+                    binding.textViewInjections.text = "Brak szczepień"
+                } else {
                     binding.textViewInjections.text = "Szczepienia:"
                     events.sortBy { it.startDate }
                 }
+
                 eventAdapter.updateList(events)
+            }
+            .addOnFailureListener { exception ->
+                exception.printStackTrace()
+            }
+            .addOnFailureListener { exception ->
+                exception.printStackTrace()
+            }
+    }
+
+    private fun getPastInjectionsFromDatabase(fireDogId : String){
+        //uzytkownik
+        if (user == null) {
+            Toast.makeText(requireContext(), "Błąd: użytkownik niezalogowany!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val userId = user.uid
+
+        events.clear()
+
+        // pobieranie wydarzeń
+        database.collection("users").document(userId)
+            .collection("dogs").document(fireDogId)
+            .collection("events")
+            .whereEqualTo("injection", true)
+            .get()
+            .addOnSuccessListener { documents ->
+                val allEvents = mutableListOf<EventDisplayModel>()
+
+                for (document in documents) {
+                    val event = document.toObject(EventDisplayModel::class.java)
+                    event.fireId = document.id
+                    allEvents.add(event)
+                }
+
+                val futureEvents = allEvents.filter { event ->
+                    event.startDate.toDate().before(Date())
+                }
+
+                events.clear()
+                events.addAll(futureEvents)
+
+                if (events.isEmpty()) {
+                    binding.textViewInjections.text = "Brak szczepień"
+                } else {
+                    binding.textViewInjections.text = "Szczepienia:"
+                    events.sortBy { it.startDate }
+                }
+
+                eventAdapter.updateList(events)
+            }
+            .addOnFailureListener { exception ->
+                exception.printStackTrace()
             }
             .addOnFailureListener { exception ->
                 exception.printStackTrace()

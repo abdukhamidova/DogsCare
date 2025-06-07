@@ -15,7 +15,10 @@ import com.example.dogscare.databinding.FragmentCalendarDogBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class CalendarDogFragment : Fragment() {
     private lateinit var binding: FragmentCalendarDogBinding
@@ -82,10 +85,13 @@ class CalendarDogFragment : Fragment() {
                     clickedDay = selectedDay.calendar
                     val clickedDate = Timestamp(selectedDay.calendar.time)
                     val dayEvents = events.filter { event ->
-                        val start = event.startDate.toDate()
-                        val end = event.endDate.toDate()
-                        val clicked = clickedDate.toDate()
+                        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                        val clicked = sdf.parse(sdf.format(clickedDate.toDate()))
+                        val start = sdf.parse(sdf.format(event.startDate.toDate()))
+                        val end = sdf.parse(sdf.format(event.endDate.toDate()))
+
                         !clicked.before(start) && !clicked.after(end)
+
                     }
 
                     setInformationLabel(dayEvents)

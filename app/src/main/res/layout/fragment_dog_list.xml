@@ -23,16 +23,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextSearch"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:inputType="text"
-            android:maxLines="1"
-            android:hint="Szukaj"
-            android:drawableStart="@drawable/icon_search"
-            android:drawablePadding="@dimen/_7sdp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="0.9"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:hint="Szukaj"
+                android:autofillHints="name"
+                android:drawableStart="@drawable/icon_search"
+                android:drawablePadding="@dimen/_7sdp"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/icon_filter_30"
+                app:tint="@color/icon_color"
+                android:contentDescription="Przycisk filtru"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dogListRecyclerView"

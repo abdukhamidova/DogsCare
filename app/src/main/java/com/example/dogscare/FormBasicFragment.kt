@@ -90,37 +90,6 @@ class FormBasicFragment : Fragment() {
         return binding.root
     }
 
-    //region PICTURE FUNCTIONS
-    /*// Obsługa wybranego zdjęcia
-    private val startForImageResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                imageUri = result.data?.data // Pobierz Uri zdjęcia
-                imageView.setImageURI(imageUri) // Wyświetl w ImageView
-                uploadImageToFirebase() // Prześlij do Firebase
-            } else {
-                Toast.makeText(this, "Nie wybrano zdjęcia", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-    private fun uploadImageToFirebase() {
-        if (imageUri == null) return
-
-        val storageReference = FirebaseStorage.getInstance().reference
-            .child("dogs/${UUID.randomUUID()}.jpg") // Tworzy unikalną nazwę pliku
-
-        storageReference.putFile(imageUri!!)
-            .addOnSuccessListener {
-                storageReference.downloadUrl.addOnSuccessListener { uri ->
-                    saveImageUrlToFirestore(uri.toString()) // Zapisz URL do Firestore
-                }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Błąd przesyłania", Toast.LENGTH_SHORT).show()
-            }
-    }*/
-    //endregion
-
     private fun showDatePickerDialog() {
         val year = defaultDate.get(Calendar.YEAR)
         val month = defaultDate.get(Calendar.MONTH)
@@ -136,7 +105,7 @@ class FormBasicFragment : Fragment() {
             },
             year, month, day
         )
-        datePickerDialog.datePicker.maxDate = defaultDate.timeInMillis
+        //datePickerDialog.datePicker.maxDate = defaultDate.timeInMillis
         datePickerDialog.show()
     }
 
@@ -175,8 +144,8 @@ class FormBasicFragment : Fragment() {
             if (arrivalDate != original.arrivalDate) updates["arrivalDate"] = arrivalDate
         }
 
-        //region UPDATE DOG PICTURE
-        val newImageUri = selectedImageUri // nowe zdjęcie
+        //UPDATE DOG PICTURE
+        val newImageUri = selectedImageUri
         if (newImageUri != null) {
             val storageRef = FirebaseStorage.getInstance().reference
             val imageRef = storageRef.child("dog_images/$userId/$fireId.jpg") // ścieżka do storage
@@ -202,7 +171,7 @@ class FormBasicFragment : Fragment() {
                 Toast.makeText(requireContext(), "Błąd ładowania zdjęcia.", Toast.LENGTH_LONG).show()
             }
         } else {
-            //jesli zdjecie sie nie zmienilo aktualizuje tylko dane
+
             val dogRef = database.collection("users").document(userId)
                 .collection("dogs").document(fireId)
 
@@ -215,8 +184,6 @@ class FormBasicFragment : Fragment() {
                 }
         }
     }
-
-
 
     private fun fetchDogFromDatabase(fireId: String) {
         if (user == null) {
@@ -310,5 +277,10 @@ class FormBasicFragment : Fragment() {
                 }
             }
     }
-
 }
+
+
+
+
+
+

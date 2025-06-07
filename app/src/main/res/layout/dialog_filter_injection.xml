@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_220sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:text="FILTRUJ DATY SZCZEPIEŃ"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        android:textColor="@color/dialog_header"
+        android:textAlignment="center" />
+
+    <RadioButton
+        android:id="@+id/radioButtonAllDogs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:text="wszystkie psy"
+        android:textSize="@dimen/_17sdp"
+        android:checked="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.1"
+            android:textSize="@dimen/_17ssp"
+            android:text="Od:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextStartDate"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.6"
+            android:hint="Wybierz datę"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="date"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--data start-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.1"
+            android:textSize="@dimen/_17ssp"
+            android:text="Do:"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/editTextEndDate"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_weight="0.6"
+            android:hint="Wybierz datę"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="date"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+    </LinearLayout> <!--data end-->
+
+
+    <TextView
+        android:id="@+id/buttonConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Filtruj"
+        android:textSize="@dimen/_20ssp"
+        android:textColor="@color/dialog_header"/>
+</LinearLayout>

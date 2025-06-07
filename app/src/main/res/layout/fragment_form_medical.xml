@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipToPadding="false"
     android:paddingBottom="@dimen/_40sdp"
     android:background="@color/app_background"
@@ -94,15 +94,33 @@
                 android:inputType="textMultiLine"/>
         </LinearLayout> <!--choroby-->
 
-        <TextView
-            android:id="@+id/textViewInjections"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
-            android:text="Brak szczepień"
-            android:textSize="@dimen/_15ssp"
-            android:textStyle="bold"
-            android:textColor="@color/calendar_color"/>
+            android:paddingHorizontal="@dimen/_10sdp">
+            <TextView
+                android:id="@+id/textViewInjections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignStart="@+id/imageButtonChange"
+                android:text="Brak wydarzeń"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                android:textColor="@color/calendar_color"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@color/transparent"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:src="@drawable/icon_forward_30"
+                android:contentDescription="Przycisk dodaj"
+                app:tint="@color/calendar_color" />
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/injectionListRecyclerView"

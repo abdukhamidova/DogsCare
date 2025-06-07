@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogscare.databinding.FragmentDogListBinding
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import java.util.Calendar
 
-class ListDogFragment : Fragment() {
+class ListDogFragment : Fragment(), FilterInjectionDialog.DateSelectionListener {
     private lateinit var binding: FragmentDogListBinding
     private lateinit var adapter: DogAdapter
     private val dogs = mutableListOf<Dog>()
@@ -56,6 +58,13 @@ class ListDogFragment : Fragment() {
             else viewModel.fetchDogsFromDatabase(ArchiveType.ACTIVE)
         }
 
+        //filtruj
+        binding.imageButtonFilter.setOnClickListener{
+            val filterDialog = FilterInjectionDialog(requireContext())
+            filterDialog.setDateSelectionListener(this)
+            filterDialog.show()
+        }
+
     }
 
     override fun onResume() {
@@ -77,5 +86,13 @@ class ListDogFragment : Fragment() {
 
         binding.dogListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.dogListRecyclerView.adapter = adapter
+    }
+
+    // Implementacja metody z interfejsu DateSelectionListener
+    override fun onDateSelected(allDogs: Boolean, startDate: Calendar, endDate: Calendar) {
+        if(allDogs){
+            viewModel.fetchDogsFromDatabase(ArchiveType.ACTIVE)
+        }
+        else viewModel.fetchDogsWithInjectionEvents(startDate, endDate)
     }
 }
